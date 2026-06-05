@@ -1,4 +1,6 @@
-import L from 'leaflet';
+import { LocateControl } from "leaflet.locatecontrol";
+import "leaflet.locatecontrol/dist/L.Control.Locate.min.css"; // Import styles
+import L from "leaflet"; // Import L from leaflet to start using the plugin;
 import './style.css'
 import 'leaflet/dist/leaflet.css';
 
@@ -7,13 +9,15 @@ const map = L.map(container, {
   center: new L.LatLng(39.8599013238558, -105.05942838059936),
   zoom: 20,
   maxZoom: 30
-}).locate({ setView: false });
+});
 
 L.tileLayer("https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}{r}", {
   maxNativeZoom: 18,
   maxZoom: 1000,
   attribution: "Source: Esri, Vantor, Earthstar Geographics, and the GIS User Community"
 }).addTo(map)
+
+new LocateControl().addTo(map);
 
 map.on('click', (e) => {
   console.log(`${e.latlng.lat}, ${e.latlng.lng}`);

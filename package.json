@@ -17,6 +17,7 @@
     "wrangler": "^4.97.0"
   },
   "dependencies": {
-    "leaflet": "^1.9.4"
+    "leaflet": "^1.9.4",
+    "leaflet.locatecontrol": "^0.90.0"
   }
 }
