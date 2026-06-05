@@ -19,19 +19,34 @@ map.on('click', (e) => {
   console.log(`${e.latlng.lat}, ${e.latlng.lng}`);
 });
 
+function PinheadIcon(bgColor: string, iconName: string): L.DivIcon {
+  const html = document.createElement('div');
+  html.className = 'pinhead-icon';
+  html.style.background = bgColor;
+
+  const icon = document.createElement('img');
+  icon.src = `/img/pinhead/${iconName}.svg`;
+  html.appendChild(icon);
+
+  return new L.DivIcon({ html });
+}
+
 interface Marker {
   title: string;
-  location: L.LatLng
+  location: L.LatLng;
+  icon?: () => L.DivIcon;
 }
 
 interface Category {
   title: string;
   markers: Marker[];
+  icon?: () => L.DivIcon;
 }
 
 const CATEGORIES: Category[] = [
   {
     title: "Entrances",
+    icon: () => PinheadIcon("purple", "arch"),
     markers: [
       {
         title: "South Entrance",
@@ -56,26 +71,32 @@ const CATEGORIES: Category[] = [
     "markers": [
       {
         title: "Splash Pad",
+        icon: () => PinheadIcon("darkblue", "splash"),
         location: new L.LatLng(39.85951954598111, -105.05987202861702)
       },
       {
         title: "Playground",
+        icon: () => PinheadIcon("darkblue", "swing"),
         location: new L.LatLng(39.85962233694333, -105.05993451985886)
       },
       {
         title: "Main Stage",
+        icon: () => PinheadIcon("darkblue", "record"),
         location: new L.LatLng(39.86003933695594, -105.05963386122946)
       },
       {
         title: "Canine Club",
+        icon: () => PinheadIcon("darkblue", "dog-collar-heart"),
         location: new L.LatLng(39.860093107216606, -105.0588539682967)
       },
       {
         title: "RAINBOW CENTRAL",
+        icon: () => PinheadIcon("darkblue", "star"),
         location: new L.LatLng(39.859431346285584, -105.05959943375002)
       },
       {
         title: "Yard Games",
+        icon: () => PinheadIcon("darkblue", "table-tennis"),
         location: new L.LatLng(39.85988055957516, -105.0592102110386)
       }
     ]
@@ -85,27 +106,33 @@ const CATEGORIES: Category[] = [
     markers: [
       {
         title: "Water Bottle Fill Station and Dog Fountain",
+        icon: () => PinheadIcon("red", "water"),
         location: new L.LatLng(39.85975084865773, -105.05998134613039)
       },
       {
         title: "Restrooms",
+        icon: () => PinheadIcon("red", "restroom"),
         location: new L.LatLng(39.859997916860586, -105.05977883934976)
       },
       {
         title: "Restrooms",
+        icon: () => PinheadIcon("red", "restroom"),
         location: new L.LatLng(39.8601615990551, -105.0596742331982)
       },
       {
         title: "Water Bottle Fill Station and Dog Fountain",
+        icon: () => PinheadIcon("red", "water"),
         location: new L.LatLng(39.86015645182224, -105.05965545773508)
       }
     ]
   },
   {
     title: "Dining",
+    icon: () => PinheadIcon("red", "fork-knife"),
     markers: [
       {
         title: "Dining Tent",
+        icon: () => PinheadIcon("red", "picnic-table"),
         location: new L.LatLng(39.86008541996911, -105.05945160984994)
       },
       {
@@ -132,6 +159,7 @@ const CATEGORIES: Category[] = [
   },
   {
     title: "Libraries",
+    icon: () => PinheadIcon("green", "books"),
     markers: [
       {
         title: "Library A",
@@ -152,26 +180,32 @@ const CATEGORIES: Category[] = [
     markers: [
       {
         title: "Sponsor Tents (Red Section)",
+        icon: () => PinheadIcon("red", "tents"),
         location: new L.LatLng(39.859919678692584, -105.05957901477815)
       },
       {
         title: "Sponsor Tents (Purple Section)",
+        icon: () => PinheadIcon("purple", "tents"),
         location: new L.LatLng(39.85994129714267, -105.05936309695247)
       },
       {
         title: "Sponsor Tents (Orange Section)",
+        icon: () => PinheadIcon("orange", "tents"),
         location: new L.LatLng(39.85970143491043, -105.05945026874544)
       },
       {
         title: "Sponsor Tents (Blue Section)",
+        icon: () => PinheadIcon("blue", "tents"),
         location: new L.LatLng(39.85965819785232, -105.05943149328233)
       },
       {
         title: "Sponsor Tents (Yellow Section)",
+        icon: () => PinheadIcon("yellow", "tents"),
         location: new L.LatLng(39.85993614989327, -105.05907878279686)
       },
       {
         title: "Sponsor Tents (Green Section)",
+        icon: () => PinheadIcon("green", "tents"),
         location: new L.LatLng(39.85992379649314, -105.05902782082559)
       }
     ]
@@ -180,7 +214,15 @@ const CATEGORIES: Category[] = [
 
 CATEGORIES.forEach((c) => {
   c.markers.forEach((m) => {
-    L.marker(m.location).bindPopup(m.title).addTo(map);
+    let icon: L.DivIcon | L.Icon;
+    if (m.icon)
+      icon = m.icon();
+    else if (c.icon)
+      icon = c.icon();
+    else
+      icon = new L.Icon({ iconUrl: 'marker-icon.png' });
+
+    L.marker(m.location, { icon }).bindPopup(m.title).addTo(map);
   });
 });
 

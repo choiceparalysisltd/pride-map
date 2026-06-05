@@ -9,3 +9,14 @@ body, html {
   width: 100vw;
   height: 100vh;
 }
+
+.pinhead-icon {
+  width: 1.5em;
+  height: 1.5em;
+  padding: 0.5em;
+  border: 1px solid white;
+  border-radius: 50%;
+  box-shadow: 0 0 1em black;
+  transform: translate3d(-50%, -50%, 0);
+}
+
