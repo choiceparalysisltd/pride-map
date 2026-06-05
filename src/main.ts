@@ -96,7 +96,7 @@ const CATEGORIES: Category[] = [
       {
         title: "RAINBOW CENTRAL",
         icon: () => PinheadIcon("darkblue", "star"),
-        location: new L.LatLng(39.859431346285584, -105.05959943375002)
+        location: new L.LatLng(39.85958304766272, -105.05951866507533)
       },
       {
         title: "Yard Games",
@@ -127,6 +127,11 @@ const CATEGORIES: Category[] = [
         title: "Water Bottle Fill Station and Dog Fountain",
         icon: () => PinheadIcon("red", "water"),
         location: new L.LatLng(39.86015645182224, -105.05965545773508)
+      },
+      {
+        title: "Introvert Rest Area (Yes, Seriously)",
+        icon: () => PinheadIcon("teal", "couch"),
+        location: new L.LatLng(39.85943274703663, -105.05959108471872)
       }
     ]
   },
@@ -204,7 +209,7 @@ const CATEGORIES: Category[] = [
       },
       {
         title: "Sponsor Tents (Yellow Section)",
-        icon: () => PinheadIcon("yellow", "tents"),
+        icon: () => PinheadIcon("yellow", "tents-black"),
         location: new L.LatLng(39.85993614989327, -105.05907878279686)
       },
       {
