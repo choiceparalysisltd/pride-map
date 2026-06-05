@@ -100,6 +100,81 @@ const CATEGORIES: Category[] = [
         location: new L.LatLng(39.86015645182224, -105.05965545773508)
       }
     ]
+  },
+  {
+    title: "Dining",
+    markers: [
+      {
+        title: "Dining Tent",
+        location: new L.LatLng(39.86008541996911, -105.05945160984994)
+      },
+      {
+        title: "Food Truck A",
+        location: new L.LatLng(39.86013174509905, -105.05956426262857)
+      },
+      {
+        title: "Food Truck B",
+        location: new L.LatLng(39.86015336348232, -105.05952402949333)
+      },
+      {
+        title: "Food Truck C",
+        location: new L.LatLng(39.86017704075143, -105.059465020895)
+      },
+      {
+        title: "Food Truck D",
+        location: new L.LatLng(39.86020380635013, -105.05941942334177)
+      },
+      {
+        title: "Food Truck E",
+        location: new L.LatLng(39.86022233637389, -105.05938053131105)
+      }
+    ],
+  },
+  {
+    title: "Libraries",
+    markers: [
+      {
+        title: "Library A",
+        location: new L.LatLng(39.860116303392566, -105.05940467119218)
+      },
+      {
+        title: "Library B",
+        location: new L.LatLng(39.86014615735533, -105.05936577916147)
+      },
+      {
+        title: "Library C",
+        location: new L.LatLng(39.86016983462691, -105.05932286381723)
+      }
+    ]
+  },
+  {
+    title: "Sponsor Tents",
+    markers: [
+      {
+        title: "Sponsor Tents (Red Section)",
+        location: new L.LatLng(39.859919678692584, -105.05957901477815)
+      },
+      {
+        title: "Sponsor Tents (Purple Section)",
+        location: new L.LatLng(39.85994129714267, -105.05936309695247)
+      },
+      {
+        title: "Sponsor Tents (Orange Section)",
+        location: new L.LatLng(39.85970143491043, -105.05945026874544)
+      },
+      {
+        title: "Sponsor Tents (Blue Section)",
+        location: new L.LatLng(39.85965819785232, -105.05943149328233)
+      },
+      {
+        title: "Sponsor Tents (Yellow Section)",
+        location: new L.LatLng(39.85993614989327, -105.05907878279686)
+      },
+      {
+        title: "Sponsor Tents (Green Section)",
+        location: new L.LatLng(39.85992379649314, -105.05902782082559)
+      }
+    ]
   }
 ];
 
