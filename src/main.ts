@@ -1,4 +1,5 @@
 import { LocateControl } from "leaflet.locatecontrol";
+import 'leaflet-imageoverlay-rotated';
 import "leaflet.locatecontrol/dist/L.Control.Locate.min.css"; // Import styles
 import L from "leaflet"; // Import L from leaflet to start using the plugin;
 import './style.css'
@@ -11,17 +12,26 @@ const map = L.map(container, {
   maxZoom: 30
 });
 
+const parkCorners = [
+  L.latLng([39.85998453402239, -105.06051778793335]),
+  L.latLng([39.86067837927053, -105.0590291619301]),
+  L.latLng([39.85915479295669, -105.05980968475342]),
+];
+
 L.tileLayer("https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}{r}", {
   maxNativeZoom: 18,
   maxZoom: 1000,
   attribution: "Source: Esri, Vantor, Earthstar Geographics, and the GIS User Community"
 }).addTo(map)
 
+L.imageOverlay.rotated("/img/overlay/drawn_map.png", parkCorners[0], parkCorners[1], parkCorners[2]).addTo(map);
+
 new LocateControl().addTo(map);
 
 map.on('click', (e) => {
   console.log(`${e.latlng.lat}, ${e.latlng.lng}`);
 });
+map.flyToBounds(L.latLngBounds(parkCorners));
 
 function PinheadIcon(bgColor: string, iconName: string): L.DivIcon {
   const html = document.createElement('div');
